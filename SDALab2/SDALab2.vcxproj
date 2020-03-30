@@ -138,6 +138,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="ExtendedTest.cpp" />
+    <ClCompile Include="ListIterator.cpp" />
+    <ClCompile Include="ShortTest.cpp" />
+    <ClCompile Include="SortedIndexedList.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExtendedTest.h" />
+    <ClInclude Include="ListIterator.h" />
+    <ClInclude Include="ShortTest.h" />
+    <ClInclude Include="SortedIndexedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
