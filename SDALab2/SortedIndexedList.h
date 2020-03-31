@@ -7,11 +7,20 @@ typedef int TComp;
 typedef bool (*Relation)(TComp, TComp);
 #define NULL_TCOMP -11111
 
+struct SLLNode {
+	TComp info = NULL_TCOMP; //node value
+	SLLNode* next = nullptr; //pointer to next node
+};
+
 class SortedIndexedList {
 private:
 	friend class ListIterator;
 private:
 	//TODO - Representation
+	
+	SLLNode* head; //head of the list
+	Relation r; //relation for having a sorted list
+	unsigned int size;
 
 public:
 	// constructor

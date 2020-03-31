@@ -8,6 +8,7 @@ class ListIterator{
 private:
 	const SortedIndexedList& list;
 	ListIterator(const SortedIndexedList& list);
+	int index;
 
 	//TODO - Representation
 

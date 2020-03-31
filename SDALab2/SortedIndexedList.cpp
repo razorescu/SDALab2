@@ -5,16 +5,22 @@ using namespace std;
 #include <exception>
 
 SortedIndexedList::SortedIndexedList(Relation r) {
-	//TODO - Implementation
+	this->head = nullptr;
+	this->r = r;
+	this->size = 0;
 }
 
 int SortedIndexedList::size() const {
-	//TODO - Implementation
-	return 0;
+	//TODO - modify after add
+	if (head == nullptr)
+		return 0;
+	else
+		return this->size;
 }
 
 bool SortedIndexedList::isEmpty() const {
-	//TODO - Implementation
+	if (head == nullptr)
+		return true;
 	return false;
 }
 
@@ -34,7 +40,50 @@ int SortedIndexedList::search(TComp e) const {
 }
 
 void SortedIndexedList::add(TComp e) {
-	//TODO - Implementation
+	/*
+	if list empty -> add first
+	if list not empty -> iterate through list
+		if we get to last element -> add last
+		else -> add to position
+	*/
+	if (head == nullptr)//adding first node (empty list)
+	{
+		this->head->info = e;
+		this->head->next = nullptr;
+		this->size++;
+	}
+	else //list not empty
+	{
+		SLLNode* current;
+		current->info = head->info;
+		current->next = head->next;
+		while (r(current->info, e) && current->next != nullptr)
+		{
+			current = current->next;
+			/*current->info = current->next->info; //current.info ia valoarea din 'info' a urmatorului nod
+			current->next = current->next->next; //current.next ia pointerul 'next' al urmatorului nod*/
+		}
+		if (current->next == nullptr) //we're at the last node (adding to last position)
+		{
+			SLLNode* node;
+			node->info = e;
+			node->next = nullptr;
+			current->next = node;
+			this->size++;
+		}
+		else
+		{
+			/*
+			we reached a point where the relation stopped being true for the next element
+			so we are going to add the new node in between two other nodes
+			*/
+			SLLNode* node;
+			node->info = e;
+			node->next = current->next;
+			current->next = node;
+			this->size++;
+		}
+	}
 }
 
 ListIterator SortedIndexedList::iterator(){

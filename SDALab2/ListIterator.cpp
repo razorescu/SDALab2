@@ -5,20 +5,25 @@
 using namespace std;
 
 ListIterator::ListIterator(const SortedIndexedList& list) : list(list) {
-	//TODO - Implementation
+	if (list.head == nullptr)
+		index = -1;
+	else
+		index = 0;
 }
 
 void ListIterator::first(){
-	//TODO - Implementation
+	index = 0;
 }
 
 void ListIterator::next(){
-	//TODO - Implementation
+	if (valid())
+		index++;
 }
 
 bool ListIterator::valid() const{
-	//TODO - Implementation
-	return false;
+	if (index < 0 || index >= list.size)
+		return false;
+	return true;
 }
 
 TComp ListIterator::getCurrent() const{
