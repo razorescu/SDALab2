@@ -16,11 +16,9 @@ class SortedIndexedList {
 private:
 	friend class ListIterator;
 private:
-	//TODO - Representation
-	
 	SLLNode* head; //head of the list
 	Relation r; //relation for having a sorted list
-	unsigned int size;
+	unsigned int length; //length of the list
 
 public:
 	// constructor
