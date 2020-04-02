@@ -1,8 +1,10 @@
 #include "ListIterator.h"
 #include "SortedIndexedList.h"
 #include <iostream>
-using namespace std;
 #include <exception>
+#include <vector>
+
+using namespace std;
 
 SortedIndexedList::SortedIndexedList(Relation r) {
 	/*
@@ -261,6 +263,62 @@ void SortedIndexedList::add(TComp e) {
 	}
 }
 
+void SortedIndexedList::reunion(SortedIndexedList list1, SortedIndexedList list2) {
+	/*
+	adds the reunion of the elements in list1 and list2 to this empty list
+	if the lists have nothing in common, it throws an exception
+	
+	Complexity: always O(n^4 * number of common elements)
+	*/
+	
+	vector<TComp> elems1;
+	ListIterator it1 = list1.iterator();
+	it1.first();
+	for (int i = 0;it1.valid();i++) {
+		elems1.push_back(list1.getElement(list1.search(it1.getCurrent())));
+		it1.next();
+	}//created a vector of all elements in list1
+
+	vector<TComp> elems2;
+	ListIterator it2 = list2.iterator();
+	it2.first();
+	for (int j = 0;it2.valid(); j++) {
+		elems2.push_back(list2.getElement(list2.search(it2.getCurrent())));
+		it2.next();
+	}//created a vector of all elements in list2
+
+	vector<TComp> elems;
+
+	if (elems1.size() >= elems2.size()) {
+		for (int k = 0; k < elems2.size(); k++) {
+			for (int l = 0; l < elems1.size(); l++) {
+				if (elems2[k] == elems1[l]) {
+					elems.push_back(elems2[k]);
+				}
+			}
+		}
+	}
+	else {
+		for (int k = 0; k < elems1.size(); k++) {
+			for (int l = 0; l < elems2.size(); l++) {
+				if (elems1[k] == elems2[l]) {
+					elems.push_back(elems1[k]);
+				}
+			}
+		}
+	}//created a vector of all elements the two lists have in common
+
+	if (elems.size() == 0) {
+		exception e;
+		throw e;
+	}//checking if there's anything to add
+
+	for (int x = 0; x < elems.size(); x++) {
+		this->add(elems[x]); //adding the common elements to our list
+	}
+	
+}
+
 ListIterator SortedIndexedList::iterator(){
 	/*
 	returns an iterator object for the list
@@ -273,3 +331,4 @@ ListIterator SortedIndexedList::iterator(){
 //destructor
 SortedIndexedList::~SortedIndexedList() { 
 }
+

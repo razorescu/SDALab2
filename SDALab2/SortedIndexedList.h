@@ -46,6 +46,9 @@ public:
 	// searches for an element and returns the first position where the element appears or -1 if the element is not in the list
 	int search(TComp e) const;
 
+	//fills list with all common elements in list1 and list2
+	void reunion(SortedIndexedList list1, SortedIndexedList list2);
+
 	// returns an iterator set to the first element of the list or invalid if the list is empty
 	ListIterator iterator();
 
